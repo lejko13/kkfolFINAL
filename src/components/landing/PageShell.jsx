@@ -1,0 +1,20 @@
+import React from 'react';
+import { LanguageProvider } from '@/lib/LanguageContext';
+import ScrollProgress from '@/components/landing/ScrollProgress';
+import Navbar from '@/components/landing/Navbar';
+import Footer from '@/components/landing/Footer';
+
+export default function PageShell({ children }) {
+  return (
+    <LanguageProvider>
+      <div className="min-h-screen overflow-x-hidden" style={{ background: '#1A1B1E', color: '#FFFFFF' }}>
+        <ScrollProgress />
+        <Navbar />
+        <div className="pt-16 lg:pt-20">
+          {children}
+        </div>
+        <Footer />
+      </div>
+    </LanguageProvider>
+  );
+}
