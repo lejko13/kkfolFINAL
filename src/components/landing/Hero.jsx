@@ -9,14 +9,14 @@ export default function Hero() {
   const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 
   const obrazok = '/mainhalvny.png'
-  const oprava = '/public/mobilmain.webp'
+  const oprava = '/mobilmain.webp'
 
   const isDesktop = useMediaQuery({
   query: "(min-width: 700px)",
 });
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section id="hero" className="relative min-h-[750px] md:min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0" style={{ background: '#1A1B1E' }}>
        
