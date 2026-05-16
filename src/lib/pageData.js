@@ -57,7 +57,7 @@ export const serviceData = {
     benefits: ['Vivid farby', 'Odolnosť voči UV', 'Ľubovoľné rozmery', 'Rýchle dodanie', 'Laminovanie'],
     image:   '/tlac.png',
     gallery: [
-         '/public/tlac.png',
+         '/tlac.png',
     ],
   },
   'graphic-design': {
