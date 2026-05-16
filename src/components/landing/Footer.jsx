@@ -13,9 +13,12 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           <div>
-            <span className="text-2xl font-bold font-space tracking-tight text-white">
-              KK<span style={{ color: '#CC0100' }}>FOL</span>
-            </span>
+           <img
+                src="https://media.base44.com/images/public/6a0563351d1f1fbb0b5f75ba/c7b049c4f_LOGO.png"
+                alt="KKFOL"
+                className="h-8 w-auto object-contain"
+                style={{ filter: 'brightness(0) invert(1)' }}
+              />
             <p className="text-sm mt-4 leading-relaxed max-w-xs" style={{ color: 'rgba(255,255,255,0.35)' }}>
               {t.footer.desc}
             </p>

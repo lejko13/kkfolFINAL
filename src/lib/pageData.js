@@ -9,11 +9,11 @@ export const serviceData = {
     benefits: ['Ochrana originálneho laku', 'Jedinečný vzhľad', 'Plne reverzibilné', 'Až 7 rokov životnosť', 'Certifikovaná montáž'],
     image:   '/mainpc.png',
     gallery: [
-     '/public/kkfol/auto.jpg',
-     '/public/kkfol/auto2.jpg',
-     '/public/kkfol/auto3.jpg',
-     '/public/kkfol/auto7.jpg',
-     '/public/kkfol/auto4.jpg',
+     '/kkfol/auto.jpg',
+     '/kkfol/auto2.jpg',
+     '/kkfol/auto3.jpg',
+     '/kkfol/auto7.jpg',
+     '/kkfol/auto4.jpg',
       
     ],
   },
@@ -25,11 +25,11 @@ export const serviceData = {
     benefits: ['Neviditeľná ochrana', 'Samoobnova po škrabancoch', 'Hydrofóbny povrch', 'UV ochrana', '10 rokov záruka'],
     image: '/folia.jpg',
    gallery: [
-     '/public/kkfol/auto9.jpg',
-     '/public/kkfol/auto11.jpg',
+     '/kkfol/auto9.jpg',
+     '/kkfol/auto11.jpg',
   
-     '/public/kkfol/auto13.jpg',
-     '/public/kkfol/auto14.jpg',
+     '/kkfol/auto13.jpg',
+     '/kkfol/auto14.jpg',
       
     ],
   },
@@ -41,10 +41,10 @@ export const serviceData = {
     benefits: ['Originálne logo', 'Dizajn manuál', 'Vizitky a tlačoviny', 'Digitálne formáty', 'Konzistentná identita'],
     image: '/branding.png',
     gallery: [
-      '/public/branding.png',
-      '/public/kkfol/kartaicky.jpg',
-       '/public/kkfol/tirko.jpg',
-       '/public/kkfol/banner2.jpg',
+      '/branding.png',
+      '/kkfol/kartaicky.jpg',
+       '/kkfol/tirko.jpg',
+       '/kkfol/banner2.jpg',
 
      
     ],
@@ -95,8 +95,8 @@ export const projectData  = {
     serviceSlug: 'polepy-vozidiel',
     specs: 'Liatá autofólia · UV laminácia',
     desc: 'Kompletný grafický návrh a realizácia reklamného polepu na dodávku pre stavebnú firmu EVZENBUILDER. Výrazná žlto-čierna kombinácia s detailným vyobrazením stavebných prác zaručuje okamžitú viditeľnosť na cestách.',
-    heroImage: '/public/kkfol/auto.jpg',
-    images: ['/public/kkfol/auto.jpg'],
+    heroImage: '/kkfol/auto.jpg',
+    images: ['/kkfol/auto.jpg'],
     relatedSlugs: ['instalater-galo-polep', 'polep-dodavky-tipden'],
   },
 
@@ -108,8 +108,8 @@ export const projectData  = {
     serviceSlug: 'polepy-vozidiel',
     specs: '3M liata fólia · Plnofarebná potlač',
     desc: 'Realizácia reklamného polepu pre firmu TIPDEN, špecializujúcu sa na plastové a hliníkové okná či dvere. Elegantná čierno-biela kombinácia doplnená o vizuál moderného domu dokonale reprezentuje zameranie klienta.',
-    heroImage: '/public/kkfol/auto3.jpg',
-    images: ['/public/kkfol/auto3.jpg'],
+    heroImage: '/kkfol/auto3.jpg',
+    images: ['/kkfol/auto3.jpg'],
     relatedSlugs: ['polep-dodavky-evzenbuilder', 'polep-feridtrade'],
   },
 
@@ -119,8 +119,8 @@ export const projectData  = {
     serviceSlug: 'polepy-vozidiel',
     specs: 'Rezacia grafika · Exteriérová autofólia',
     desc: 'Čistý a prehľadný polep dodávky pre spoločnosť FeridTrade (voda a kúrenie). Umiestnenie loga, hlavných činností a výrazného telefónneho čísla vyhotovené priamo pred našou kežmarskou dielňou KKFOL.',
-    heroImage: '/public/kkfol/auto4.jpg',
-    images: ['/public/kkfol/auto4.jpg'],
+    heroImage: '/kkfol/auto4.jpg',
+    images: ['/kkfol/auto4.jpg'],
     relatedSlugs: ['instalater-galo-polep', 'polep-dodavky-tipden'],
   },
 
@@ -130,8 +130,8 @@ export const projectData  = {
     serviceSlug: 'polepy-vozidiel',
     specs: 'Avery Dennison / 3M · Custom dizajn',
     desc: 'Naše vlastné firemné vozidlo zahalené do agresívneho čierno-červeného dizajnu. Tento polep slúži ako ukážka precíznej práce našej kežmarskej dielne, kde kombinujeme ostro rezané línie s ikonami ponúkaných služieb.',
-    heroImage: '/public/kkfol/auto5.jpg',
-    images: ['/public/kkfol/auto5.jpg'],
+    heroImage: '/kkfol/auto5.jpg',
+    images: ['/kkfol/auto5.jpg'],
     relatedSlugs: ['skoda-fabia-rally-livery', 'ford-raptor-satin-black'],
   },
 
@@ -143,8 +143,8 @@ export const projectData  = {
     serviceSlug: 'polepy-vozidiel',
     specs: 'Custom Racing Livery · Ochranná laminácia',
     desc: 'Kompletný návrh a aplikácia pretekárskeho dizajnu (livery) na športovú bielo-červenú verziu Škoda Fabia. Agresívne geometrické tvary navrhnuté na mieru tak, aby vozidlo okamžite vyniklo na každej trati.',
-    heroImage: '/public/kkfol/auot8.jpg', // Podľa screenshotu auot8.jpg
-    images: ['/public/kkfol/auot8.jpg'],
+    heroImage: '/kkfol/auot8.jpg', // Podľa screenshotu auot8.jpg
+    images: ['/kkfol/auot8.jpg'],
     relatedSlugs: ['skoda-fabia-rally-livery-dark', 'bmw-m2-orange'],
   },
 
@@ -154,8 +154,8 @@ export const projectData  = {
     serviceSlug: 'polepy-vozidiel',
     specs: 'Custom Racing Livery · Ochranná laminácia',
     desc: 'Dizajnový variant športového polepu pre vozidlá Škoda Fabia na tmavom podklade. Žlto-čierne a červeno-sivé ostré línie prispôsobené pre pretekárske účely a maximálnu dravosť vizuálu.',
-    heroImage: '/public/kkfol/auto6.jpg',
-    images: ['/public/kkfol/auto6.jpg'],
+    heroImage: '/kkfol/auto6.jpg',
+    images: ['/kkfol/auto6.jpg'],
     relatedSlugs: ['skoda-fabia-rally-livery-white', 'ford-raptor-satin-black'],
   },
 
@@ -165,8 +165,8 @@ export const projectData  = {
     serviceSlug: 'polepy-vozidiel',
     specs: 'Satin Black grafika · Vyrezávaný polep',
     desc: 'Doplnenie masívneho červeného pick-upu Ford Raptor o custom čierne saténové polepy korby a bokov. Grafika podčiarkuje svalnaté línie vozidla a dodáva mu jedinečný off-road charakter.',
-    heroImage: '/public/kkfol/auto7.jpg',
-    images: ['/public/kkfol/auto7.jpg'],
+    heroImage: '/kkfol/auto7.jpg',
+    images: ['/kkfol/auto7.jpg'],
     relatedSlugs: ['kkfol-predvadzacia-dodavka', 'bmw-x5-satin-silver'],
   },
 
@@ -176,8 +176,8 @@ export const projectData  = {
     serviceSlug: 'polepy-vozidiel',
     specs: 'Premium Metallic Wrap · Gloss Finish',
     desc: 'Kompletná zmena farby na športovom BMW M2. Pôvodný lak bol prekrytý prémiovou metalickou fóliou v hlbokom oranžovo-medenom odtieni, doplnený o čierne kontrastné prvky a zadné krídlo.',
-    heroImage: '/public/kkfol/auto9.jpg',
-    images: ['/public/kkfol/auto9.jpg'],
+    heroImage: '/kkfol/auto9.jpg',
+    images: ['/kkfol/auto9.jpg'],
     relatedSlugs: ['skoda-fabia-rally-livery-white', 'bmw-7-matte-black'],
   },
 
@@ -187,8 +187,8 @@ export const projectData  = {
     serviceSlug: 'polepy-vozidiel',
     specs: '3M 2080 · Matte Black',
     desc: 'Luxusná limuzína BMW radu 7 oblečená do celoplošnej matnej čiernej fólie. Precízna montáž bez viditeľných spojov dodáva vozidlu rešpekt, eleganciu a zároveň chráni pôvodný lak pred kamienkami.',
-    heroImage: '/public/kkfol/auto11.jpg',
-    images: ['/public/kkfol/auto11.jpg'],
+    heroImage: '/kkfol/auto11.jpg',
+    images: ['/kkfol/auto11.jpg'],
     relatedSlugs: ['bmw-x5-satin-silver', 'mercedes-s-class-black'],
   },
 
@@ -198,8 +198,8 @@ export const projectData  = {
     serviceSlug: 'polepy-vozidiel',
     specs: 'Satin Metallic · Kompletná zmena farby',
     desc: 'Prémiové SUV BMW X5 prešlo transformáciou do saténovej striebornej metalízy. Tento povrch nádherne zvýrazňuje prelisy karosérie a vozidlu dodáva moderný, až futuristický vzhľad.',
-    heroImage: '/public/kkfol/auto13.jpg',
-    images: ['/public/kkfol/auto13.jpg'],
+    heroImage: '/kkfol/auto13.jpg',
+    images: ['/kkfol/auto13.jpg'],
     relatedSlugs: ['bmw-7-matte-black', 'mercedes-s-class-black'],
   },
 
@@ -209,8 +209,8 @@ export const projectData  = {
     serviceSlug: 'ochranne-folie',
     specs: 'Gloss Black · Ochrana laku',
     desc: 'Exkluzívna ochrana laku a de-chrome balík pre vlajkovú loď Mercedes-Benz Triedy S. Čierna hlboká metalíza kombinovaná s precíznym spracovaním detailov priamo pred naším štúdiom v Kežmarku.',
-    heroImage: '/public/kkfol/auto14.jpg',
-    images: ['/public/kkfol/auto14.jpg'],
+    heroImage: '/kkfol/auto14.jpg',
+    images: ['/kkfol/auto14.jpg'],
     relatedSlugs: ['bmw-7-matte-black', 'bmw-x5-satin-silver'],
   },
 
@@ -222,8 +222,8 @@ export const projectData  = {
     serviceSlug: 'branding',
     specs: 'Matná laminácia · Vysokogramážny papier',
     desc: 'Návrh a tlač prémiových vizitiek pre ubytovacie zariadenie Villa Lesto. Čistý dizajn s fotografiami tatranskej scenérie a elegantnou typografiou, doplnený o kontaktné údaje na zadnej strane.',
-    heroImage: '/public/kkfol/kartaicky.jpg',
-    images: ['/public/kkfol/kartaicky.jpg'],
+    heroImage: '/kkfol/kartaicky.jpg',
+    images: ['kkfol/kartaicky.jpg'],
     relatedSlugs: ['tlacene-brozury-grafika', 'kkfol-merch'],
   },
 
@@ -233,8 +233,8 @@ export const projectData  = {
     serviceSlug: 'reklamne-putace',
     specs: 'Veľkoplošná tlač · Exteriérový banner',
     desc: 'Komplexný návrh dizajnu a veľkoplošná tlač prezentačného exteriérového bannera pre našu kežmarskú agentúru. Banner efektívne komunikuje naše hlavné portfólio – od autofólií až po prenos predstáv klienta do reality.',
-    heroImage: '/public/kkfol/baner.jpg',
-    images: ['/public/kkfol/baner.jpg'],
+    heroImage: '/kkfol/baner.jpg',
+    images: ['/kkfol/baner.jpg'],
     relatedSlugs: ['kkfol-merch', 'tlacene-brozury-grafika'],
   },
 
@@ -244,8 +244,8 @@ export const projectData  = {
     serviceSlug: 'graficky-dizajn',
     specs: 'Kriedový papier · Full color tlač',
     desc: 'Profesionálne grafické služby od prvotného náčrtu až po finálnu digitálnu realizáciu. Prezentácia našich tlačových možností, reklamného oblečenia a polygrafických služieb v prehľadnom zalomenom formáte.',
-    heroImage: '/public/kkfol/banner2.jpg',
-    images: ['/public/kkfol/banner2.jpg'],
+    heroImage: '/kkfol/banner2.jpg',
+    images: ['/kkfol/banner2.jpg'],
     relatedSlugs: ['kkfol-merch', 'vizitky-villa-lesto'],
   },
 
@@ -257,8 +257,8 @@ export const projectData  = {
     serviceSlug: 'branding',
     specs: 'Sito-tlač / Flex · Prémiový textil',
     desc: 'Návrh a realizácia firemného brandingu na textil pre náš vlastný tím. Štýlové čierne tričká s výrazným logom KKFOL a prehľadnými ikonami našich služieb na chrbte, ktoré slúžia ako skvelá chodiaca reklama.',
-    heroImage: '/public/kkfol/tirko.jpg',
-    images: ['/public/kkfol/tirko.jpg'],
+    heroImage: '/kkfol/tirko.jpg',
+    images: ['/kkfol/tirko.jpg'],
     relatedSlugs: ['tlacene-brozury-grafika', 'reklamny-banner-kkfol'],
   }
 
@@ -274,7 +274,7 @@ export const Mainproject  = {
     specs: 'Liatá autofólia · UV laminácia',
     desc: 'Kompletný grafický návrh a realizácia reklamného polepu na dodávku pre stavebnú firmu EVZENBUILDER. Výrazná žlto-čierna kombinácia s detailným vyobrazením stavebných prác zaručuje okamžitú viditeľnosť na cestách.',
     heroImage: '/kkfol/auto.jpg',
-    images: ['/public/kkfol/auto.jpg'],
+    images: ['/kkfol/auto.jpg'],
     relatedSlugs: ['instalater-galo-polep', 'polep-dodavky-tipden'],
   },
 
@@ -285,7 +285,7 @@ export const Mainproject  = {
     specs: 'Premium Metallic Wrap · Gloss Finish',
     desc: 'Kompletná zmena farby na športovom BMW M2. Pôvodný lak bol prekrytý prémiovou metalickou fóliou v hlbokom oranžovo-medenom odtieni, doplnený o čierne kontrastné prvky a zadné krídlo.',
     heroImage: '/kkfol/auto9.jpg',
-    images: ['/public/kkfol/auto9.jpg'],
+    images: ['/kkfol/auto9.jpg'],
     relatedSlugs: ['skoda-fabia-rally-livery-white', 'bmw-7-matte-black'],
   },
 
@@ -296,7 +296,7 @@ export const Mainproject  = {
     specs: '3M 2080 · Matte Black',
     desc: 'Luxusná limuzína BMW radu 7 oblečená do celoplošnej matnej čiernej fólie. Precízna montáž bez viditeľných spojov dodáva vozidlu rešpekt, eleganciu a zároveň chráni pôvodný lak pred kamienkami.',
     heroImage: '/kkfol/auto11.jpg',
-    images: ['/public/kkfol/auto11.jpg'],
+    images: ['/kkfol/auto11.jpg'],
     relatedSlugs: ['bmw-x5-satin-silver', 'mercedes-s-class-black'],
   },
 
@@ -307,7 +307,7 @@ export const Mainproject  = {
     specs: 'Satin Metallic · Kompletná zmena farby',
     desc: 'Prémiové SUV BMW X5 prešlo transformáciou do saténovej striebornej metalízy. Tento povrch nádherne zvýrazňuje prelisy karosérie a vozidlu dodáva moderný, až futuristický vzhľad.',
     heroImage: '/kkfol/auto13.jpg',
-    images: ['/public/kkfol/auto13.jpg'],
+    images: ['/kkfol/auto13.jpg'],
     relatedSlugs: ['bmw-7-matte-black', 'mercedes-s-class-black'],
   },
 
@@ -318,7 +318,7 @@ export const Mainproject  = {
     specs: 'Gloss Black · Ochrana laku',
     desc: 'Exkluzívna ochrana laku a de-chrome balík pre vlajkovú loď Mercedes-Benz Triedy S. Čierna hlboká metalíza kombinovaná s precíznym spracovaním detailov priamo pred naším štúdiom v Kežmarku.',
     heroImage: '/kkfol/auto14.jpg',
-    images: ['/public/kkfol/auto14.jpg'],
+    images: ['/kkfol/auto14.jpg'],
     relatedSlugs: ['bmw-7-matte-black', 'bmw-x5-satin-silver'],
   },
 
@@ -330,7 +330,7 @@ export const Mainproject  = {
     specs: '3M liata fólia · Plnofarebná potlač',
     desc: 'Realizácia reklamného polepu pre firmu TIPDEN, špecializujúcu sa na plastové a hliníkové okná či dvere. Elegantná čierno-biela kombinácia doplnená o vizuál moderného domu dokonale reprezentuje zameranie klienta.',
     heroImage: '/kkfol/auto3.jpg',
-    images: ['/public/kkfol/auto3.jpg'],
+    images: ['/kkfol/auto3.jpg'],
     relatedSlugs: ['polep-dodavky-evzenbuilder', 'polep-feridtrade'],
   },
 

@@ -231,24 +231,28 @@ export default function Contact() {
             </a>
 
             {/* Map */}
-            <div
-              className="rounded-2xl overflow-hidden flex-1"
-              style={{ minHeight: '180px', border: '1px solid rgba(255,255,255,0.06)' }}
-            >
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2612.0!2d20.4287!3d49.1355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sKe%C5%BEmarok!5e0!3m2!1ssk!2ssk!4v1700000000000"
-                width="100%"
-                height="100%"
-                style={{
-                  border: 0,
-                  minHeight: '180px',
-                  filter: 'invert(90%) hue-rotate(180deg) saturate(0.2) brightness(0.85)',
-                }}
-                allowFullScreen=""
-                loading="lazy"
-                title="KKFOL"
-              />
-            </div>
+ <div
+  className="rounded-2xl overflow-hidden flex-1"
+  style={{
+    minHeight: "250px",
+    border: "1px solid rgba(255,255,255,0.06)",
+  }}
+>
+  <iframe
+    src="https://www.google.com/maps?q=Autofólie+a+Reklamná+agentúra+KKFOL+Kežmarok&z=17&output=embed"
+    width="100%"
+    height="100%"
+    style={{
+      border: 0,
+      width: "100%",
+      minHeight: "180px",
+    }}
+    allowFullScreen
+    loading="lazy"
+    referrerPolicy="no-referrer-when-downgrade"
+    title="KKFOL Kežmarok"
+  />
+</div>
           </motion.div>
         </div>
       </div>
