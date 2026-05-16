@@ -115,25 +115,40 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="flex flex-col sm:flex-row gap-4"
           >
-            <button
+           <button
               onClick={() => scrollTo('contact')}
-              className="group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-semibold text-white transition-all duration-300 hover:scale-105"
-              onMouseEnter={e => { e.currentTarget.style.boxShadow = '0 0 30px rgba(204,1,0,0.5), 0 8px 24px rgba(204,1,0,0.25)'; }}
-              onMouseLeave={e => { e.currentTarget.style.boxShadow = 'none'; }}
+              className={`group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-semibold text-white transition-all duration-300 ${
+                isDesktop ? 'hover:scale-105' : ''
+              }`}
+              onMouseEnter={e => {
+                if (!isDesktop) return;
+
+                e.currentTarget.style.boxShadow =
+                  '0 0 30px rgba(204,1,0,0.5), 0 8px 24px rgba(204,1,0,0.25)';
+              }}
+              onMouseLeave={e => {
+                if (!isDesktop) return;
+
+                e.currentTarget.style.boxShadow = 'none';
+              }}
               style={{ background: '#CC0100' }}
             >
               {t.hero.cta}
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>
 
+
             <button
               onClick={() => scrollTo('portfolio')}
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-semibold text-white transition-all duration-300 hover:bg-white/10"
+              className={`inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-semibold text-white transition-all duration-300 ${
+                isDesktop ? 'hover:bg-white/10' : ''
+              }`}
               style={{ border: '1px solid rgba(255,255,255,0.15)' }}
             >
               <Play className="w-4 h-4" />
               {t.hero.portfolio}
             </button>
+
           </motion.div>
         </div>
       </div>
