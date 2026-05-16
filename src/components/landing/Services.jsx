@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from '@/lib/LanguageContext';
 import SectionLabel from './SectionLabel';
 
+import { useMediaQuery } from "react-responsive";
+
 const serviceImages = [
   '/kkfolmain.webp',
   '/folia.jpg',
@@ -15,6 +17,14 @@ const serviceImages = [
 ];
 
 export default function Services() {
+
+
+    const isDesktop = useMediaQuery({
+    query: "(min-width: 700px)",
+  });
+
+
+
   const { t } = useLanguage();
   const [hovered, setHovered] = useState(null);
 
@@ -36,21 +46,31 @@ export default function Services() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {t.services.items.map((service, i) => (
             <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-              onMouseEnter={() => setHovered(i)}
-              onMouseLeave={() => setHovered(null)}
-              className="group relative overflow-hidden rounded-2xl"
-              style={{
-                height: '400px',
-                border: hovered === i ? '1px solid rgba(204,1,0,0.35)' : '1px solid rgba(255,255,255,0.04)',
-                transition: 'border-color 0.4s ease, box-shadow 0.4s ease',
-                boxShadow: hovered === i ? '0 0 30px rgba(204,1,0,0.12), 0 20px 60px rgba(0,0,0,0.5)' : '0 4px 24px rgba(0,0,0,0.3)',
-              }}
-            >
+  key={i}
+  initial={isDesktop ? { opacity: 0, y: 30 } : false}
+  whileInView={isDesktop ? { opacity: 1, y: 0 } : {}}
+  viewport={isDesktop ? { once: true, margin: '-40px' } : undefined}
+  transition={
+    isDesktop
+      ? { duration: 0.5, delay: i * 0.08 }
+      : undefined
+  }
+  onMouseEnter={() => setHovered(i)}
+  onMouseLeave={() => setHovered(null)}
+  className="group relative overflow-hidden rounded-2xl"
+  style={{
+    height: '400px',
+    border:
+      hovered === i
+        ? '1px solid rgba(204,1,0,0.35)'
+        : '1px solid rgba(255,255,255,0.04)',
+    transition: 'border-color 0.4s ease, box-shadow 0.4s ease',
+    boxShadow:
+      hovered === i
+        ? '0 0 30px rgba(204,1,0,0.12), 0 20px 60px rgba(0,0,0,0.5)'
+        : '0 4px 24px rgba(0,0,0,0.3)',
+  }}
+>
               <Link to={`/services/${service.slug}`} className="absolute inset-0 z-20" aria-label={service.title} />
               {/* Image */}
               <img

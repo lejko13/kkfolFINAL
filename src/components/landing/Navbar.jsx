@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { useLanguage } from '@/lib/LanguageContext';
 import { Link, useNavigate } from 'react-router-dom';
+import { useMediaQuery } from "react-responsive";
 
 const serviceLinks = [
   { slug: 'vehicle-wraps', label: 'Polepy vozidiel' },
@@ -14,6 +15,14 @@ const serviceLinks = [
 ];
 
 export default function Navbar() {
+
+    const isDesktop = useMediaQuery({
+  query: "(min-width: 700px)",
+});
+
+
+
+
   const { t } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -51,16 +60,22 @@ export default function Navbar() {
 
   return (
     <>
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
-        style={{
-          backgroundColor: scrolled ? 'rgba(26, 27, 30, 0.95)' : 'transparent',
-          borderBottom: scrolled ? '1px solid rgba(255,255,255,0.06)' : '1px solid transparent',
-        }}
-        className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 backdrop-blur-xl"
-      >
+     <motion.nav
+  initial={isDesktop ? { y: -100 } : false}
+  animate={isDesktop ? { y: 0 } : {}}
+  transition={
+    isDesktop
+      ? { duration: 0.6, ease: 'easeOut' }
+      : undefined
+  }
+  style={{
+    backgroundColor: scrolled ? 'rgba(26, 27, 30, 0.95)' : 'transparent',
+    borderBottom: scrolled
+      ? '1px solid rgba(255,255,255,0.06)'
+      : '1px solid transparent',
+  }}
+  className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 backdrop-blur-xl"
+>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo */}
@@ -201,94 +216,106 @@ export default function Navbar() {
       {/* Mobile overlay */}
       <AnimatePresence>
         {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-4 overflow-y-auto py-20"
-            style={{ background: 'rgba(26, 27, 30, 0.97)', backdropFilter: 'blur(20px)' }}
-          >
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0 }}>
-              <Link
-                to="/"
-                onClick={() => setMobileOpen(false)}
-                className="text-2xl font-space font-semibold text-white hover:text-[#CC0100] transition-colors"
-              >{t.nav.home}</Link>
-            </motion.div>
+          <div
+  className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-4 overflow-y-auto py-20"
+  style={{ background: 'rgba(26, 27, 30, 0.97)', backdropFilter: 'blur(20px)' }}
+>
+  <div>
+    <Link
+      to="/"
+      onClick={() => setMobileOpen(false)}
+      className="text-2xl font-space font-semibold text-white hover:text-[#CC0100] transition-colors"
+    >
+      {t.nav.home}
+    </Link>
+  </div>
 
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 }} className="text-center">
-              <button
-                onClick={() => setMobileServicesOpen(v => !v)}
-                className="text-2xl font-space font-semibold text-white hover:text-[#CC0100] transition-colors flex items-center gap-2"
-              >
-                {t.nav.services}
-                <ChevronDown className={`w-5 h-5 transition-transform duration-200 ${mobileServicesOpen ? 'rotate-180' : ''}`} />
-              </button>
-              <AnimatePresence>
-                {mobileServicesOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    className="flex flex-col items-center gap-2 mt-3"
-                  >
-                    {serviceLinks.map(s => (
-                      <Link
-                        key={s.slug}
-                        to={`/services/${s.slug}`}
-                        onClick={() => setMobileOpen(false)}
-                        className="text-base text-white/50 hover:text-[#CC0100] transition-colors"
-                      >
-                        {s.label}
-                      </Link>
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
+  <div className="text-center">
+    <button
+      onClick={() => setMobileServicesOpen(v => !v)}
+      className="text-2xl font-space font-semibold text-white hover:text-[#CC0100] transition-colors flex items-center gap-2"
+    >
+      {t.nav.services}
 
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
-              <Link
-                to="/projects"
-                onClick={() => setMobileOpen(false)}
-                className="text-2xl font-space font-semibold text-white hover:text-[#CC0100] transition-colors"
-              >{t.nav.projects}</Link>
-            </motion.div>
+      <ChevronDown
+        className={`w-5 h-5 transition-transform duration-300 ${
+          mobileServicesOpen ? 'rotate-180' : ''
+        }`}
+      />
+    </button>
 
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}>
-              <Link
-                to="/about"
-                onClick={() => setMobileOpen(false)}
-                className="text-2xl font-space font-semibold text-white hover:text-[#CC0100] transition-colors"
-              >{t.nav.about}</Link>
-            </motion.div>
-
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
-              <button
-                onClick={() => scrollTo('contact')}
-                className="text-2xl font-space font-semibold text-white hover:text-[#CC0100] transition-colors"
-              >{t.nav.contact}</button>
-            </motion.div>
-
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.22 }}>
-              <Link
-                to="/faq"
-                onClick={() => setMobileOpen(false)}
-                className="text-2xl font-space font-semibold text-white hover:text-[#CC0100] transition-colors"
-              >FAQ</Link>
-            </motion.div>
-
-            <motion.button
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.25 }}
-              onClick={() => scrollTo('contact')}
-              className="mt-4 px-8 py-3 rounded-full text-base font-semibold text-white"
-              style={{ background: '#CC0100' }}
+    <div
+      className={`grid transition-all duration-300 ease-in-out ${
+        mobileServicesOpen
+          ? 'grid-rows-[1fr] opacity-100 mt-3'
+          : 'grid-rows-[0fr] opacity-0'
+      }`}
+    >
+      <div className="overflow-hidden">
+        <div className="flex flex-col items-center gap-2">
+          {serviceLinks.map(s => (
+            <Link
+              key={s.slug}
+              to={`/services/${s.slug}`}
+              onClick={() => setMobileOpen(false)}
+              className="text-base text-white/50 hover:text-[#CC0100] transition-colors"
             >
-              {t.nav.cta}
-            </motion.button>
-          </motion.div>
+              {s.label}
+            </Link>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <Link
+      to="/projects"
+      onClick={() => setMobileOpen(false)}
+      className="text-2xl font-space font-semibold text-white hover:text-[#CC0100] transition-colors"
+    >
+      {t.nav.projects}
+    </Link>
+  </div>
+
+  <div>
+    <Link
+      to="/about"
+      onClick={() => setMobileOpen(false)}
+      className="text-2xl font-space font-semibold text-white hover:text-[#CC0100] transition-colors"
+    >
+      {t.nav.about}
+    </Link>
+  </div>
+
+  <div>
+    <button
+      onClick={() => scrollTo('contact')}
+      className="text-2xl font-space font-semibold text-white hover:text-[#CC0100] transition-colors"
+    >
+      {t.nav.contact}
+    </button>
+  </div>
+
+  <div>
+    <Link
+      to="/faq"
+      onClick={() => setMobileOpen(false)}
+      className="text-2xl font-space font-semibold text-white hover:text-[#CC0100] transition-colors"
+    >
+      FAQ
+    </Link>
+  </div>
+
+  <button
+    onClick={() => scrollTo('contact')}
+    className="mt-4 px-8 py-3 rounded-full text-base font-semibold text-white"
+    style={{ background: '#CC0100' }}
+  >
+    {t.nav.cta}
+  </button>
+</div>
+        
         )}
       </AnimatePresence>
     </>

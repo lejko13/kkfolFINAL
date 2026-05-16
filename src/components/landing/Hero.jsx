@@ -55,12 +55,16 @@ export default function Hero() {
       />
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-20">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-20 ">
         <div className="max-w-3xl">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            initial={isDesktop ? { opacity: 0, y: 30 } : false}
+            animate={isDesktop ? { opacity: 1, y: 0 } : {}}
+            transition={
+              isDesktop
+                ? { duration: 0.8, delay: 0.2 }
+                : undefined
+            }
           >
             <span
               className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono tracking-wider mb-8"
@@ -70,24 +74,33 @@ export default function Hero() {
                 color: '#CC0100',
               }}
             >
-              <span className="w-1.5 h-1.5 rounded-full animate-pulse-dot" style={{ background: '#CC0100' }} />
+              <span
+                className="w-1.5 h-1.5 rounded-full animate-pulse-dot"
+                style={{ background: '#CC0100' }}
+              />
               {t.hero.badge}
             </span>
           </motion.div>
 
           <motion.h1
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            initial={isDesktop ? { opacity: 0, y: 40 } : false}
+            animate={ {opacity: 1, y: 0 }}
+            transition={
+              isDesktop
+                ? { duration: 0.8, delay: 0.4 }
+                : undefined
+            }
             className="text-5xl sm:text-7xl lg:text-9xl font-space font-bold tracking-tight leading-none mb-6 text-white"
           >
             {t.hero.headline1}
             <br />
-            <span style={{ color: '#CC0100' }}>{t.hero.headline2}</span>
+            <span style={{ color: '#CC0100' }}>
+              {t.hero.headline2}
+            </span>
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 30 }}
+            initial={isDesktop ? { opacity: 0, y: 30 } : false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
             className="text-base sm:text-lg max-w-lg mb-10 leading-relaxed"
@@ -97,7 +110,7 @@ export default function Hero() {
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={isDesktop ? { opacity: 0, y: 20 } : false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
             className="flex flex-col sm:flex-row gap-4"
