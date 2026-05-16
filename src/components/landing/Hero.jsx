@@ -7,7 +7,7 @@ export default function Hero() {
   const { t } = useLanguage();
   const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 
-  const obrazok = '/public/mainhalvny.png'
+  const obrazok = '/mainhalvny.png'
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
