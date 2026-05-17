@@ -80,7 +80,7 @@ export default function Services() {
     aria-label={service.title}
   />
 
-{isDesktop &&   <img
+ <img
     src={serviceImages[i]}
     alt={service.title}
     loading="lazy"
@@ -90,7 +90,7 @@ export default function Services() {
     }}
   />
 
-   }
+   
 
 
   <div
