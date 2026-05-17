@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useMediaQuery } from "react-responsive";
 
 function Lightbox({ images, startIndex, onClose }) {
   const [index, setIndex] = useState(startIndex);
@@ -23,26 +24,58 @@ function Lightbox({ images, startIndex, onClose }) {
     };
   }, [prev, next, onClose]);
 
+
+   const isDesktop = useMediaQuery({
+      query: "(min-width: 700px)",
+    });
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.2 }}
-      className="fixed inset-0 z-50 flex items-center justify-center"
-      style={{ background: 'rgba(10,11,14,0.94)', backdropFilter: 'blur(14px)' }}
-      onClick={onClose}
-    >
-      {/* Close */}
-      <button
-        onClick={onClose}
-        className="absolute top-5 right-5 w-10 h-10 rounded-full flex items-center justify-center z-10 transition-colors"
-        style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.1)', color: 'rgba(255,255,255,0.6)' }}
-        onMouseEnter={e => e.currentTarget.style.color = '#fff'}
-        onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.6)'}
-      >
-        <X className="w-4 h-4" />
-      </button>
+  initial={isDesktop ? { opacity: 0 } : false}
+  animate={isDesktop ? { opacity: 1 } : {}}
+  exit={isDesktop ? { opacity: 0 } : undefined}
+  transition={isDesktop ? { duration: 0.2 } : undefined}
+  className="fixed inset-0 z-50 flex items-center justify-center"
+  style={{
+    background: 'rgba(10,11,14,0.94)',
+    backdropFilter: 'blur(14px)',
+  }}
+  onClick={onClose}
+>
+  {/* Close */}
+  <button
+    onClick={onClose}
+    className="absolute top-5 right-5 w-10 h-10 rounded-full flex items-center justify-center z-10"
+    style={{
+      background: isDesktop
+        ? 'rgba(255,255,255,0.08)'
+        : 'rgba(204,1,0,0.12)',
+
+      border: isDesktop
+        ? '1px solid rgba(255,255,255,0.1)'
+        : '1px solid rgba(204,1,0,0.3)',
+
+      color: '#fff',
+
+      boxShadow: !isDesktop
+        ? '0 0 20px rgba(204,1,0,0.15)'
+        : 'none',
+
+      transition: isDesktop ? 'color 0.2s' : 'none',
+    }}
+    onMouseEnter={e => {
+      if (!isDesktop) return;
+
+      e.currentTarget.style.color = '#fff';
+    }}
+    onMouseLeave={e => {
+      if (!isDesktop) return;
+
+      e.currentTarget.style.color =
+        'rgba(255,255,255,0.6)';
+    }}
+  >
+    <X className="w-4 h-4" />
+  </button>
 
       {/* Counter */}
       <div
@@ -54,15 +87,23 @@ function Lightbox({ images, startIndex, onClose }) {
 
       {/* Image */}
       <motion.div
-        key={index}
-        initial={{ opacity: 0, scale: 0.96 }}
-        animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.25 }}
-        className="relative mx-16 rounded-2xl overflow-hidden max-w-5xl w-full"
-        style={{ border: '1px solid rgba(255,255,255,0.07)' }}
-        onClick={e => e.stopPropagation()}
-      >
+  key={index}
+  initial={isDesktop ? { opacity: 0, scale: 0.96 } : false}
+  animate={isDesktop ? { opacity: 1, scale: 1 } : {}}
+  exit={isDesktop ? { opacity: 0 } : undefined}
+  transition={isDesktop ? { duration: 0.25 } : undefined}
+  className="relative mx-16 rounded-2xl overflow-hidden max-w-5xl w-full"
+  style={{
+    border: isDesktop
+      ? '1px solid rgba(255,255,255,0.07)'
+      : '1px solid rgba(204,1,0,0.25)',
+
+    boxShadow: !isDesktop
+      ? '0 0 24px rgba(204,1,0,0.08)'
+      : 'none',
+  }}
+  onClick={e => e.stopPropagation()}
+>
         <img
           src={images[index]}
           alt={`Gallery image ${index + 1}`}
@@ -72,26 +113,95 @@ function Lightbox({ images, startIndex, onClose }) {
       </motion.div>
 
       {/* Prev */}
-      <button
-        onClick={e => { e.stopPropagation(); prev(); }}
-        className="absolute left-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full flex items-center justify-center transition-all"
-        style={{ background: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.1)', color: 'rgba(255,255,255,0.6)' }}
-        onMouseEnter={e => { e.currentTarget.style.background = '#CC0100'; e.currentTarget.style.borderColor = '#CC0100'; e.currentTarget.style.color = '#fff'; }}
-        onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.07)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'; e.currentTarget.style.color = 'rgba(255,255,255,0.6)'; }}
-      >
-        <ChevronLeft className="w-5 h-5" />
-      </button>
+      {/* Prev */}
+<button
+  onClick={e => {
+    e.stopPropagation();
+    prev();
+  }}
+  className={`absolute left-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full flex items-center justify-center ${
+    isDesktop ? 'transition-all' : ''
+  }`}
+  style={{
+    background: isDesktop
+      ? 'rgba(255,255,255,0.07)'
+      : 'rgba(204,1,0,0.12)',
 
-      {/* Next */}
-      <button
-        onClick={e => { e.stopPropagation(); next(); }}
-        className="absolute right-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full flex items-center justify-center transition-all"
-        style={{ background: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.1)', color: 'rgba(255,255,255,0.6)' }}
-        onMouseEnter={e => { e.currentTarget.style.background = '#CC0100'; e.currentTarget.style.borderColor = '#CC0100'; e.currentTarget.style.color = '#fff'; }}
-        onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.07)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'; e.currentTarget.style.color = 'rgba(255,255,255,0.6)'; }}
-      >
-        <ChevronRight className="w-5 h-5" />
-      </button>
+    border: isDesktop
+      ? '1px solid rgba(255,255,255,0.1)'
+      : '1px solid rgba(204,1,0,0.3)',
+
+    color: '#fff',
+
+    boxShadow: !isDesktop
+      ? '0 0 20px rgba(204,1,0,0.15)'
+      : 'none',
+  }}
+  onMouseEnter={e => {
+    if (!isDesktop) return;
+
+    e.currentTarget.style.background = '#CC0100';
+    e.currentTarget.style.borderColor = '#CC0100';
+    e.currentTarget.style.color = '#fff';
+  }}
+  onMouseLeave={e => {
+    if (!isDesktop) return;
+
+    e.currentTarget.style.background =
+      'rgba(255,255,255,0.07)';
+    e.currentTarget.style.borderColor =
+      'rgba(255,255,255,0.1)';
+    e.currentTarget.style.color =
+      'rgba(255,255,255,0.6)';
+  }}
+>
+  <ChevronLeft className="w-5 h-5" />
+</button>
+
+{/* Next */}
+<button
+  onClick={e => {
+    e.stopPropagation();
+    next();
+  }}
+  className={`absolute right-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full flex items-center justify-center ${
+    isDesktop ? 'transition-all' : ''
+  }`}
+  style={{
+    background: isDesktop
+      ? 'rgba(255,255,255,0.07)'
+      : 'rgba(204,1,0,0.12)',
+
+    border: isDesktop
+      ? '1px solid rgba(255,255,255,0.1)'
+      : '1px solid rgba(204,1,0,0.3)',
+
+    color: '#fff',
+
+    boxShadow: !isDesktop
+      ? '0 0 20px rgba(204,1,0,0.15)'
+      : 'none',
+  }}
+  onMouseEnter={e => {
+    if (!isDesktop) return;
+
+    e.currentTarget.style.background = '#CC0100';
+    e.currentTarget.style.borderColor = '#CC0100';
+    e.currentTarget.style.color = '#fff';
+  }}
+  onMouseLeave={e => {
+    if (!isDesktop) return;
+
+    e.currentTarget.style.background =
+      'rgba(255,255,255,0.07)';
+    e.currentTarget.style.borderColor =
+      'rgba(255,255,255,0.1)';
+    e.currentTarget.style.color =
+      'rgba(255,255,255,0.6)';
+  }}
+>
+  <ChevronRight className="w-5 h-5" />
+</button>
 
       {/* Dots */}
       <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-1.5">
@@ -118,6 +228,10 @@ export default function ServiceImageGallery({ images }) {
 
   if (!images || images.length === 0) return null;
 
+  const isDesktop = useMediaQuery({
+      query: "(min-width: 700px)",
+    });
+
   return (
     <section className="py-10 pb-16" style={{ background: '#1A1B1E' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -126,21 +240,45 @@ export default function ServiceImageGallery({ images }) {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {images.map((src, i) => (
-            <motion.button
-              key={i}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.05 }}
-              onMouseEnter={() => setHoveredIndex(i)}
-              onMouseLeave={() => setHoveredIndex(null)}
-              onClick={() => setLightboxIndex(i)}
-              className="relative overflow-hidden rounded-xl text-left w-full"
-              style={{
-                border: hoveredIndex === i ? '1px solid rgba(204,1,0,0.25)' : '1px solid rgba(255,255,255,0.05)',
-                transition: 'border-color 0.3s',
-              }}
-            >
+
+   
+<motion.button
+  key={i}
+  initial={isDesktop ? { opacity: 0, y: 16 } : false}
+  whileInView={isDesktop ? { opacity: 1, y: 0 } : {}}
+  viewport={isDesktop ? { once: true } : undefined}
+  transition={
+    isDesktop
+      ? { duration: 0.4, delay: i * 0.05 }
+      : undefined
+  }
+  onMouseEnter={() =>
+    isDesktop && setHoveredIndex(i)
+  }
+  onMouseLeave={() =>
+    isDesktop && setHoveredIndex(null)
+  }
+  onClick={() => setLightboxIndex(i)}
+  className="relative overflow-hidden rounded-xl text-left w-full"
+  style={{
+    border: isDesktop
+      ? hoveredIndex === i
+        ? '1px solid rgba(204,1,0,0.25)'
+        : '1px solid rgba(255,255,255,0.05)'
+      : '1px solid rgba(204,1,0,0.25)',
+
+    boxShadow: !isDesktop
+      ? '0 0 20px rgba(204,1,0,0.08)'
+      : 'none',
+
+    transition: isDesktop
+      ? 'border-color 0.3s'
+      : 'none',
+  }}
+>
+
+
+            
                  <div className="   h-full aspect-[2.5/2]">
                 <img
                   src={src}

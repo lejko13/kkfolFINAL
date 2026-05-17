@@ -7,7 +7,7 @@ import { serviceData } from '@/lib/pageData';
 import ServicesSlider from '@/components/landing/ServicesSlider';
 import ServiceImageGallery from '@/components/landing/ServiceImageGallery';
 import { useLanguage } from '@/lib/LanguageContext';
-
+import { useMediaQuery } from "react-responsive";
 const serviceDetails = {
   'vehicle-wraps': {
     longDesc: `Polep vozidla je jedným z najúčinnejších spôsobov, ako premeniť vzhľad auta bez trvalých zásahov do originálneho laku. Využívame prémiové fólie značiek 3M a Avery Dennison, ktoré zaručujú dlhú životnosť, sýte farby a precízne spracovanie. Každý polep je navrhnutý na mieru – od jednoduché farebné zmeny až po komplexné reklamné alebo závodné dizajny.
@@ -118,6 +118,7 @@ Zabezpečujeme kompletný servis od návrhu, cez výrobu až po montáž a príp
   },
 };
 
+
 export default function ServicePage() {
   return (
     <PageShell>
@@ -135,7 +136,7 @@ function ServicePageContent() {
 
   if (!service) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-[700px] md:min-h-screen flex items-center justify-center">
         <div className="text-center">
           <p className="text-white/50 mb-4">Služba nenájdená</p>
           <button onClick={() => navigate('/')} className="text-[#CC0100] hover:underline">← Späť na úvod</button>
@@ -148,6 +149,10 @@ function ServicePageContent() {
     navigate('/');
     setTimeout(() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }), 200);
   };
+   const isDesktop = useMediaQuery({
+    query: "(min-width: 700px)",
+  });
+
 
   return (
     <>
@@ -161,7 +166,11 @@ function ServicePageContent() {
           style={{ background: 'radial-gradient(ellipse, rgba(204,1,0,0.07) 0%, transparent 70%)', filter: 'blur(40px)' }} />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+<motion.div
+  initial={isDesktop ? { opacity: 0, y: 30 } : false}
+  animate={isDesktop ? { opacity: 1, y: 0 } : {}}
+  transition={isDesktop ? { duration: 0.6 } : undefined}
+>
             <button
               onClick={() => navigate(-1)}
               className="flex items-center gap-2 text-sm mb-8 transition-colors hover:text-white"
@@ -182,14 +191,28 @@ function ServicePageContent() {
       <section className="py-16 lg:py-24" style={{ background: '#1A1B1E' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-            <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
+           <motion.div
+  initial={isDesktop ? { opacity: 0, x: -20 } : false}
+  whileInView={isDesktop ? { opacity: 1, x: 0 } : {}}
+  viewport={isDesktop ? { once: true } : undefined}
+  transition={isDesktop ? { duration: 0.6 } : undefined}
+>
               <h2 className="text-2xl font-space font-bold text-white mb-6">O tejto službe</h2>
               {(details?.longDesc || service.desc).split('\n\n').map((para, i) => (
                 <p key={i} className="text-base leading-relaxed mb-4" style={{ color: 'rgba(255,255,255,0.6)' }}>{para}</p>
               ))}
             </motion.div>
 
-            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.15 }}>
+            <motion.div
+  initial={isDesktop ? { opacity: 0, x: 20 } : false}
+  whileInView={isDesktop ? { opacity: 1, x: 0 } : {}}
+  viewport={isDesktop ? { once: true } : undefined}
+  transition={
+    isDesktop
+      ? { duration: 0.6, delay: 0.15 }
+      : undefined
+  }
+>
               <h2 className="text-2xl font-space font-bold text-white mb-6">Výhody a benefity</h2>
               <div className="space-y-3 mb-10">
                 {service.benefits.map((b, i) => (
@@ -227,13 +250,8 @@ function ServicePageContent() {
           <h2 className="text-2xl sm:text-3xl font-space font-bold text-white mb-12">Ako to funguje</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {(details?.process || t.process.steps).map((step, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="p-6 rounded-2xl"
-                style={{ background: 'rgba(26,27,30,0.6)', border: '1px solid rgba(255,255,255,0.05)' }}
-              >
+              <motion.div  key={i}  initial={isDesktop ? { opacity: 0, y: 20 } : false}  whileInView={isDesktop ? { opacity: 1, y: 0 } : {}}  viewport={isDesktop ? { once: true } : undefined}  transition={    isDesktop      ? { duration: 0.5, delay: i * 0.1 }      : undefined  }  className="p-6 rounded-2xl"  style={{    background: isDesktop      ? 'rgba(26,27,30,0.6)'      : 'rgba(204,1,0,0.04)',    border: isDesktop      ? '1px solid rgba(255,255,255,0.05)'      : '1px solid rgba(204,1,0,0.25)',    boxShadow: !isDesktop      ? '0 0 24px rgba(204,1,0,0.08)'      : 'none',  }}>
+                
                 <div className="w-10 h-10 rounded-full flex items-center justify-center mb-4 text-sm font-mono font-bold"
                   style={{ background: 'rgba(204,1,0,0.1)', border: '1px solid rgba(204,1,0,0.2)', color: '#CC0100' }}>
                   {step.n || step.number}
