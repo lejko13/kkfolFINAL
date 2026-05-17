@@ -8,7 +8,7 @@ export default function Hero() {
   const { t } = useLanguage();
   const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 
-  const obrazok = '/pcmain.webp'
+  const obrazok = '/public/pcmain.webp'
   const oprava = '/mobilmain.webp'
 
   const isDesktop = useMediaQuery({

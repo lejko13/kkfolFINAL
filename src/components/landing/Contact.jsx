@@ -4,11 +4,16 @@ import { Phone, Mail, MapPin, Send, MessageCircle } from 'lucide-react';
 import { useLanguage } from '@/lib/LanguageContext';
 import SectionLabel from './SectionLabel';
 import { toast } from 'sonner';
+import { useMediaQuery } from "react-responsive";
 
 export default function Contact() {
   const { t } = useLanguage();
   const [form, setForm] = useState({ name: '', email: '', phone: '', service: '', message: '' });
   const [sending, setSending] = useState(false);
+
+       const isDesktop = useMediaQuery({
+    query: "(min-width: 700px)",
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -44,13 +49,13 @@ export default function Contact() {
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12">
           {/* Form */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="lg:col-span-3"
-          >
+         <motion.div
+  initial={isDesktop ? { opacity: 0, x: -30 } : false}
+  whileInView={isDesktop ? { opacity: 1, x: 0 } : {}}
+  viewport={isDesktop ? { once: true } : undefined}
+  transition={isDesktop ? { duration: 0.6 } : undefined}
+  className="lg:col-span-3"
+>
             <form
               onSubmit={handleSubmit}
               className="rounded-3xl p-6 sm:p-8 lg:p-10 space-y-5"
@@ -151,13 +156,17 @@ export default function Contact() {
           </motion.div>
 
           {/* Info */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="lg:col-span-2 flex flex-col gap-4"
-          >
+         <motion.div
+  initial={isDesktop ? { opacity: 0, x: 30 } : false}
+  whileInView={isDesktop ? { opacity: 1, x: 0 } : {}}
+  viewport={isDesktop ? { once: true } : undefined}
+  transition={
+    isDesktop
+      ? { duration: 0.6, delay: 0.2 }
+      : undefined
+  }
+  className="lg:col-span-2 flex flex-col gap-4"
+>
             {([
               {
                 Icon: Phone,

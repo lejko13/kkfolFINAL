@@ -4,6 +4,9 @@ import { ChevronDown } from 'lucide-react';
 import PageShell from '@/components/landing/PageShell';
 import SectionLabel from '@/components/landing/SectionLabel';
 
+import { useMediaQuery } from "react-responsive";
+
+
 const faqGroups = [
   {
     group: 'Služby a možnosti',
@@ -51,7 +54,15 @@ const faqGroups = [
   },
 ];
 
+
+  
+
 function FaqItem({ item, isOpen, onToggle }) {
+
+    const isDesktop = useMediaQuery({
+    query: "(min-width: 700px)",
+  });
+  
   return (
     <div
       className="rounded-xl overflow-hidden"
@@ -70,16 +81,27 @@ function FaqItem({ item, isOpen, onToggle }) {
       </button>
       <AnimatePresence initial={false}>
         {isOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.25 }}
-          >
-            <div className="px-6 pb-5 pt-1 text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.55)' }}>
-              {item.a}
-            </div>
-          </motion.div>
+         <motion.div
+  initial={isDesktop ? { height: 0, opacity: 0 } : false}
+  animate={
+    isDesktop
+      ? { height: 'auto', opacity: 1 }
+      : { height: 'auto', opacity: 1 }
+  }
+  exit={
+    isDesktop
+      ? { height: 0, opacity: 0 }
+      : undefined
+  }
+  transition={isDesktop ? { duration: 0.25 } : undefined}
+>
+  <div
+    className="px-6 pb-5 pt-1 text-sm leading-relaxed"
+    style={{ color: 'rgba(255,255,255,0.55)' }}
+  >
+    {item.a}
+  </div>
+</motion.div>
         )}
       </AnimatePresence>
     </div>
@@ -87,6 +109,10 @@ function FaqItem({ item, isOpen, onToggle }) {
 }
 
 export default function FaqPage() {
+   const isDesktop = useMediaQuery({
+    query: "(min-width: 700px)",
+  });
+  
   const [openKey, setOpenKey] = useState(null);
 
   const toggle = (key) => setOpenKey(openKey === key ? null : key);
@@ -98,13 +124,30 @@ export default function FaqPage() {
         <div className="absolute inset-0 pointer-events-none"
           style={{ background: 'radial-gradient(ellipse at top center, rgba(204,1,0,0.06) 0%, transparent 60%)', filter: 'blur(40px)' }} />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <span className="text-xs font-mono tracking-widest uppercase mb-4 block" style={{ color: '#CC0100' }}>Časté otázky</span>
-            <h1 className="text-5xl sm:text-7xl font-space font-bold text-white mb-6">FAQ</h1>
-            <p className="text-xl max-w-2xl" style={{ color: 'rgba(255,255,255,0.45)' }}>
-              Odpovede na najčastejšie otázky našich klientov o službách, cenách, procese a zákazkovej realizácii.
-            </p>
-          </motion.div>
+          <motion.div
+  initial={isDesktop ? { opacity: 0, y: 30 } : false}
+  animate={isDesktop ? { opacity: 1, y: 0 } : {}}
+  transition={isDesktop ? { duration: 0.6 } : undefined}
+>
+  <span
+    className="text-xs font-mono tracking-widest uppercase mb-4 block"
+    style={{ color: '#CC0100' }}
+  >
+    Časté otázky
+  </span>
+
+  <h1 className="text-5xl sm:text-7xl font-space font-bold text-white mb-6">
+    FAQ
+  </h1>
+
+  <p
+    className="text-xl max-w-2xl"
+    style={{ color: 'rgba(255,255,255,0.45)' }}
+  >
+    Odpovede na najčastejšie otázky našich klientov
+    o službách, cenách, procese a zákazkovej realizácii.
+  </p>
+</motion.div>
         </div>
       </section>
 
@@ -112,26 +155,47 @@ export default function FaqPage() {
       <section className="py-16 lg:py-24" style={{ background: '#1A1B1E' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14">
           {faqGroups.map((group, gi) => (
-            <motion.div
-              key={gi}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: gi * 0.05 }}
-            >
-              <h2 className="text-lg font-space font-bold text-white mb-5 flex items-center gap-3">
-                <span className="w-6 h-px flex-shrink-0" style={{ background: '#CC0100' }} />
-                {group.group}
-              </h2>
-              <div className="space-y-2">
-                {group.items.map((item, ii) => {
-                  const key = `${gi}-${ii}`;
-                  return (
-                    <FaqItem key={key} item={item} isOpen={openKey === key} onToggle={() => toggle(key)} />
-                  );
-                })}
-              </div>
-            </motion.div>
+           <motion.div
+  key={gi}
+  initial={isDesktop ? { opacity: 0, y: 20 } : false}
+  whileInView={isDesktop ? { opacity: 1, y: 0 } : {}}
+  viewport={isDesktop ? { once: true } : undefined}
+  transition={
+    isDesktop
+      ? { duration: 0.5, delay: gi * 0.05 }
+      : undefined
+  }
+>
+  <h2 className="text-lg font-space font-bold text-white mb-5 flex items-center gap-3">
+    <span
+      className="w-6 h-px flex-shrink-0"
+      style={{
+        background: '#CC0100',
+
+        boxShadow: !isDesktop
+          ? '0 0 10px rgba(204,1,0,0.4)'
+          : 'none',
+      }}
+    />
+
+    {group.group}
+  </h2>
+
+  <div className="space-y-2">
+    {group.items.map((item, ii) => {
+      const key = `${gi}-${ii}`;
+
+      return (
+        <FaqItem
+          key={key}
+          item={item}
+          isOpen={openKey === key}
+          onToggle={() => toggle(key)}
+        />
+      );
+    })}
+  </div>
+</motion.div>
           ))}
         </div>
       </section>

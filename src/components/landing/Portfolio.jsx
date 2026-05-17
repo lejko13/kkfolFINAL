@@ -4,11 +4,23 @@ import { useLanguage } from '@/lib/LanguageContext';
 import SectionLabel from './SectionLabel';
 import { projectData ,Mainproject} from '@/lib/pageData';
 import ProjectLightbox from './ProjectLightbox';
+import { useMediaQuery } from "react-responsive";
 
 // const allProjects = Object.entries(projectData).map(([slug, p]) => ({ slug, ...p, src: p.heroImage }));
+
 const allProjects = Object.entries(Mainproject).map(([slug, p]) => ({ slug, ...p, src: p.heroImage }));
 
+
 export default function Portfolio() {
+
+
+    const isDesktop = useMediaQuery({
+  query: "(min-width: 700px)",
+});
+
+
+
+
   const { t } = useLanguage();
   const [activeIndex, setActiveIndex] = useState(null);
 
@@ -54,22 +66,41 @@ export default function Portfolio() {
 
 function ProjectCard({ project, index, onClick }) {
   const [hovered, setHovered] = useState(false);
+
+   const isDesktop = useMediaQuery({
+  query: "(min-width: 700px)",
+});
+
   return (
-    <motion.button
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-40px' }}
-      transition={{ duration: 0.4, delay: index * 0.06 }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      onClick={onClick}
+   <motion.button
+  initial={isDesktop ? { opacity: 0, y: 24 } : false}
+  whileInView={isDesktop ? { opacity: 1, y: 0 } : {}}
+  viewport={isDesktop ? { once: true, margin: '-40px' } : undefined}
+  transition={
+    isDesktop
+      ? { duration: 0.4, delay: index * 0.06 }
+      : undefined
+  }
+  onMouseEnter={() => isDesktop && setHovered(true)}
+  onMouseLeave={() => isDesktop && setHovered(false)}
+  onClick={onClick}
   className="relative overflow-hidden rounded-2xl w-full aspect-[2.5/2]"
-      style={{
-        border: hovered ? '1px solid rgba(204,1,0,0.3)' : '1px solid rgba(255,255,255,0.04)',
-        boxShadow: hovered ? '0 0 24px rgba(204,1,0,0.1)' : 'none',
-        transition: 'border-color 0.3s, box-shadow 0.3s',
-      }}
-    >
+  style={{
+    border: isDesktop
+      ? hovered
+        ? '1px solid rgba(204,1,0,0.3)'
+        : '1px solid rgba(255,255,255,0.04)'
+      : '1px solid rgba(204,1,0,0.3)',
+
+    boxShadow: isDesktop
+      ? hovered
+        ? '0 0 24px rgba(204,1,0,0.1)'
+        : 'none'
+      : '0 0 24px rgba(204,1,0,0.1)',
+
+    transition: 'border-color 0.3s, box-shadow 0.3s',
+  }}
+>
       <div className="   h-full">
         <img
           src={project.src}

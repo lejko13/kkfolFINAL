@@ -216,40 +216,41 @@ export default function Navbar() {
       {/* Mobile overlay */}
       <AnimatePresence>
         {mobileOpen && (
-        <motion.div
-  initial={{ opacity: 0 }}
-  animate={{ opacity: 1 }}
-  exit={{ opacity: 0 }}
-  transition={{ duration: 0.25 }}
+          <div
   className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-4 overflow-y-auto py-20"
-  style={{
-    background: 'rgba(26, 27, 30, 0.97)',
-    backdropFilter: 'blur(20px)',
-  }}
+  style={{ background: 'rgba(26, 27, 30, 0.97)', backdropFilter: 'blur(20px)' }}
 >
   <div>
-    <Link
-      to="/"
-      onClick={() => setMobileOpen(false)}
-      className="text-2xl font-space font-semibold text-white hover:text-[#CC0100] transition-colors"
-    >
-      {t.nav.home}
-    </Link>
+   <Link
+  to="/"
+  onClick={() => setMobileOpen(false)}
+  className={`text-2xl font-space font-semibold transition-colors ${
+    isDesktop
+      ? 'text-white hover:text-[#CC0100]'
+      : 'text-white'
+  }`}
+>
+  {t.nav.home}
+</Link>
   </div>
 
   <div className="text-center">
     <button
-      onClick={() => setMobileServicesOpen(v => !v)}
-      className="text-2xl font-space font-semibold text-white hover:text-[#CC0100] transition-colors flex items-center gap-2"
-    >
-      {t.nav.services}
+  onClick={() => setMobileServicesOpen(v => !v)}
+  className={`text-2xl font-space font-semibold transition-colors flex items-center gap-2 ${
+    isDesktop
+      ? 'text-white hover:text-[#CC0100]'
+      : 'text-white'
+  }`}
+>
+  {t.nav.services}
 
-      <ChevronDown
-        className={`w-5 h-5 transition-transform duration-300 ${
-          mobileServicesOpen ? 'rotate-180' : ''
-        }`}
-      />
-    </button>
+  <ChevronDown
+    className={`w-5 h-5 transition-transform duration-300 ${
+      mobileServicesOpen ? 'rotate-180' : ''
+    }`}
+  />
+</button>
 
     <div
       className={`grid transition-all duration-300 ease-in-out ${
@@ -261,11 +262,15 @@ export default function Navbar() {
       <div className="overflow-hidden">
         <div className="flex flex-col items-center gap-2">
           {serviceLinks.map(s => (
-            <Link
+           <Link
               key={s.slug}
               to={`/services/${s.slug}`}
               onClick={() => setMobileOpen(false)}
-              className="text-base text-white/50 hover:text-[#CC0100] transition-colors"
+              className={`text-base transition-colors ${
+                isDesktop
+                  ? 'text-white/50 hover:text-[#CC0100]'
+                  : 'text-white/50'
+              }`}
             >
               {s.label}
             </Link>
@@ -277,41 +282,59 @@ export default function Navbar() {
 
   <div>
     <Link
-      to="/projects"
-      onClick={() => setMobileOpen(false)}
-      className="text-2xl font-space font-semibold text-white hover:text-[#CC0100] transition-colors"
-    >
-      {t.nav.projects}
-    </Link>
+  to="/projects"
+  onClick={() => setMobileOpen(false)}
+  className={`text-2xl font-space font-semibold transition-colors ${
+    isDesktop
+      ? 'text-white hover:text-[#CC0100]'
+      : 'text-white'
+  }`}
+>
+  {t.nav.projects}
+</Link>
   </div>
 
   <div>
     <Link
-      to="/about"
-      onClick={() => setMobileOpen(false)}
-      className="text-2xl font-space font-semibold text-white hover:text-[#CC0100] transition-colors"
-    >
-      {t.nav.about}
-    </Link>
+  to="/about"
+  onClick={() => setMobileOpen(false)}
+  className={`text-2xl font-space font-semibold transition-colors ${
+    isDesktop
+      ? 'text-white hover:text-[#CC0100]'
+      : 'text-white'
+  }`}
+>
+  {t.nav.about}
+</Link>
   </div>
 
   <div>
-    <button
-      onClick={() => scrollTo('contact')}
-      className="text-2xl font-space font-semibold text-white hover:text-[#CC0100] transition-colors"
-    >
-      {t.nav.contact}
-    </button>
+   <button
+  onClick={() => scrollTo('contact')}
+  className={`text-2xl font-space font-semibold transition-colors ${
+    isDesktop
+      ? 'text-white hover:text-[#CC0100]'
+      : 'text-white'
+  }`}
+>
+  {t.nav.contact}
+</button>
   </div>
 
   <div>
+
     <Link
-      to="/faq"
+   to="/faq"
       onClick={() => setMobileOpen(false)}
-      className="text-2xl font-space font-semibold text-white hover:text-[#CC0100] transition-colors"
-    >
-      FAQ
-    </Link>
+  className={`text-2xl font-space font-semibold transition-colors ${
+    isDesktop
+      ? 'text-white hover:text-[#CC0100]'
+      : 'text-white'
+  }`}
+>
+  FAQ
+</Link>
+   
   </div>
 
   <button
@@ -321,7 +344,7 @@ export default function Navbar() {
   >
     {t.nav.cta}
   </button>
-</motion.div>
+</div>
         
         )}
       </AnimatePresence>

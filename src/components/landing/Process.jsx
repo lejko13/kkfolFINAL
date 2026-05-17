@@ -3,12 +3,16 @@ import { motion } from 'framer-motion';
 import { MessageSquare, Palette, Printer, Wrench } from 'lucide-react';
 import { useLanguage } from '@/lib/LanguageContext';
 import SectionLabel from './SectionLabel';
+import { useMediaQuery } from "react-responsive";
 
 const icons = [MessageSquare, Palette, Printer, Wrench];
 
 export default function Process() {
   const { t } = useLanguage();
 
+     const isDesktop = useMediaQuery({
+    query: "(min-width: 700px)",
+  });
   return (
     <section id="process" className="relative py-24 lg:py-32" style={{ background: '#1A1B1E' }}>
       {/* Ambient */}
@@ -34,38 +38,72 @@ export default function Process() {
           {t.process.steps.map((step, i) => {
             const Icon = icons[i];
             return (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.5, delay: i * 0.15 }}
-                className="group relative text-center"
-              >
-                {/* Step number badge */}
-                <div className="relative z-10 mx-auto mb-5 w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-500 group-hover:scale-110"
-                  style={{
-                    background: 'rgba(204,1,0,0.1)',
-                    border: '1px solid rgba(204,1,0,0.25)',
-                    boxShadow: '0 0 0 0 rgba(204,1,0,0)',
-                    transition: 'all 0.4s ease',
-                  }}
-                  onMouseEnter={e => { e.currentTarget.style.boxShadow = '0 0 20px rgba(204,1,0,0.3)'; }}
-                  onMouseLeave={e => { e.currentTarget.style.boxShadow = '0 0 0 0 rgba(204,1,0,0)'; }}
-                >
-                  <Icon className="w-6 h-6" style={{ color: '#CC0100' }} />
-                </div>
+             <motion.div
+  key={i}
+  initial={isDesktop ? { opacity: 0, y: 30 } : false}
+  whileInView={isDesktop ? { opacity: 1, y: 0 } : {}}
+  viewport={isDesktop ? { once: true, margin: '-40px' } : undefined}
+  transition={
+    isDesktop
+      ? { duration: 0.5, delay: i * 0.15 }
+      : undefined
+  }
+  className="group relative text-center"
+>
+  {/* Step number badge */}
+  <div
+    className={`relative z-10 mx-auto mb-5 w-14 h-14 rounded-2xl flex items-center justify-center ${
+      isDesktop
+        ? 'transition-all duration-500 group-hover:scale-110'
+        : ''
+    }`}
+    style={{
+      background: 'rgba(204,1,0,0.1)',
 
-                <span className="text-xs font-mono" style={{ color: 'rgba(204,1,0,0.45)' }}>
-                  {step.number}
-                </span>
-                <h3 className="text-base font-space font-bold text-white mt-2 mb-2">
-                  {step.title}
-                </h3>
-                <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.35)' }}>
-                  {step.desc}
-                </p>
-              </motion.div>
+      border: isDesktop
+        ? '1px solid rgba(204,1,0,0.25)'
+        : '1px solid rgba(204,1,0,0.4)',
+
+      boxShadow: isDesktop
+        ? '0 0 0 0 rgba(204,1,0,0)'
+        : '0 0 20px rgba(204,1,0,0.3)',
+
+      transition: isDesktop ? 'all 0.4s ease' : 'none',
+    }}
+    onMouseEnter={e => {
+      if (!isDesktop) return;
+
+      e.currentTarget.style.boxShadow =
+        '0 0 20px rgba(204,1,0,0.3)';
+    }}
+    onMouseLeave={e => {
+      if (!isDesktop) return;
+
+      e.currentTarget.style.boxShadow =
+        '0 0 0 0 rgba(204,1,0,0)';
+    }}
+  >
+    <Icon className="w-6 h-6" style={{ color: '#CC0100' }} />
+  </div>
+
+  <span
+    className="text-xs font-mono"
+    style={{ color: 'rgba(204,1,0,0.45)' }}
+  >
+    {step.number}
+  </span>
+
+  <h3 className="text-base font-space font-bold text-white mt-2 mb-2">
+    {step.title}
+  </h3>
+
+  <p
+    className="text-sm leading-relaxed"
+    style={{ color: 'rgba(255,255,255,0.35)' }}
+  >
+    {step.desc}
+  </p>
+</motion.div>
             );
           })}
         </div>

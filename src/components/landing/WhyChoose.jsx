@@ -3,11 +3,21 @@ import { motion } from 'framer-motion';
 import { Calendar, FolderCheck, Award, Zap } from 'lucide-react';
 import { useLanguage } from '@/lib/LanguageContext';
 import SectionLabel from './SectionLabel';
+import { useMediaQuery } from "react-responsive";
 
 const icons = [Calendar, FolderCheck, Award, Zap];
 
 export default function WhyChoose() {
   const { t } = useLanguage();
+
+
+
+  
+      const isDesktop = useMediaQuery({
+      query: "(min-width: 700px)",
+    });
+  
+  
 
   return (
     <section id="why" className="relative py-24 lg:py-32" style={{ background: '#1A1B1E' }}>
@@ -29,30 +39,49 @@ export default function WhyChoose() {
             const Icon = icons[i];
             return (
               <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="group relative overflow-hidden rounded-2xl p-8 text-center cursor-default"
-                style={{
-                  background: 'rgba(38,39,44,0.6)',
-                  border: '1px solid rgba(255,255,255,0.06)',
-                  transition: 'all 0.4s ease',
-                }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.border = '1px solid rgba(204,1,0,0.3)';
-                  e.currentTarget.style.background = 'rgba(204,1,0,0.04)';
-                  e.currentTarget.style.boxShadow = '0 0 30px rgba(204,1,0,0.1), 0 10px 40px rgba(0,0,0,0.3)';
-                  e.currentTarget.style.transform = 'translateY(-3px)';
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.border = '1px solid rgba(255,255,255,0.06)';
-                  e.currentTarget.style.background = 'rgba(38,39,44,0.6)';
-                  e.currentTarget.style.boxShadow = 'none';
-                  e.currentTarget.style.transform = 'translateY(0)';
-                }}
-              >
+  key={i}
+  initial={isDesktop ? { opacity: 0, y: 30 } : false}
+  whileInView={isDesktop ? { opacity: 1, y: 0 } : {}}
+  viewport={isDesktop ? { once: true, margin: '-40px' } : undefined}
+  transition={
+    isDesktop
+      ? { duration: 0.5, delay: i * 0.1 }
+      : undefined
+  }
+  className="group relative overflow-hidden rounded-2xl p-8 text-center cursor-default"
+  style={{
+    background: isDesktop
+      ? 'rgba(38,39,44,0.6)'
+      : 'rgba(204,1,0,0.04)',
+
+    border: isDesktop
+      ? '1px solid rgba(255,255,255,0.06)'
+      : '1px solid rgba(204,1,0,0.3)',
+
+    boxShadow: isDesktop
+      ? 'none'
+      : '0 0 30px rgba(204,1,0,0.1), 0 10px 40px rgba(0,0,0,0.3)',
+
+    transition: isDesktop ? 'all 0.4s ease' : 'none',
+  }}
+  onMouseEnter={e => {
+    if (!isDesktop) return;
+
+    e.currentTarget.style.border = '1px solid rgba(204,1,0,0.3)';
+    e.currentTarget.style.background = 'rgba(204,1,0,0.04)';
+    e.currentTarget.style.boxShadow =
+      '0 0 30px rgba(204,1,0,0.1), 0 10px 40px rgba(0,0,0,0.3)';
+    e.currentTarget.style.transform = 'translateY(-3px)';
+  }}
+  onMouseLeave={e => {
+    if (!isDesktop) return;
+
+    e.currentTarget.style.border = '1px solid rgba(255,255,255,0.06)';
+    e.currentTarget.style.background = 'rgba(38,39,44,0.6)';
+    e.currentTarget.style.boxShadow = 'none';
+    e.currentTarget.style.transform = 'translateY(0)';
+  }}
+>
                 {/* Icon */}
                 <div
                   className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-5 transition-all duration-400 group-hover:scale-110"

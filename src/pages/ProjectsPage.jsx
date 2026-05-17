@@ -4,7 +4,7 @@ import PageShell from '@/components/landing/PageShell';
 import SectionLabel from '@/components/landing/SectionLabel';
 import ProjectLightbox from '@/components/landing/ProjectLightbox';
 import { projectData } from '@/lib/pageData';
-
+import { useMediaQuery } from "react-responsive";
 
 
 
@@ -16,23 +16,42 @@ function ProjectCard({ project, index, onClick }) {
   const [hovered, setHovered] = useState(false);
 
 
+     const isDesktop = useMediaQuery({
+    query: "(min-width: 700px)",
+  });
 
   
   return (
     <motion.button
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-30px' }}
-      transition={{ duration: 0.4, delay: index * 0.05 }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      onClick={onClick}
-    className="relative overflow-hidden rounded-2xl w-full aspect-[2.5/2] "
-      style={{
-        border: hovered ? '1px solid rgba(204,1,0,0.3)' : '1px solid rgba(255,255,255,0.05)',
-        boxShadow: hovered ? '0 0 24px rgba(204,1,0,0.1)' : 'none',
-        transition: 'border-color 0.3s, box-shadow 0.3s',
-      }}
+      initial={isDesktop ? { opacity: 0, y: 24 } : false}
+whileInView={isDesktop ? { opacity: 1, y: 0 } : {}}
+viewport={isDesktop ? { once: true, margin: '-30px' } : undefined}
+transition={
+  isDesktop
+    ? { duration: 0.4, delay: index * 0.05 }
+    : undefined
+}
+onMouseEnter={() => isDesktop && setHovered(true)}
+onMouseLeave={() => isDesktop && setHovered(false)}
+onClick={onClick}
+className="relative overflow-hidden rounded-2xl w-full aspect-[2.5/2]"
+style={{
+  border: isDesktop
+    ? hovered
+      ? '1px solid rgba(204,1,0,0.3)'
+      : '1px solid rgba(255,255,255,0.05)'
+    : '1px solid rgba(204,1,0,0.3)',
+
+  boxShadow: isDesktop
+    ? hovered
+      ? '0 0 24px rgba(204,1,0,0.1)'
+      : 'none'
+    : '0 0 24px rgba(204,1,0,0.1)',
+
+  transition: isDesktop
+    ? 'border-color 0.3s, box-shadow 0.3s'
+    : 'none',
+}}
     >
      <div className="   h-full">
         <img
