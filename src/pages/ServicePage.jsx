@@ -136,7 +136,7 @@ function ServicePageContent() {
 
   if (!service) {
     return (
-      <div className="min-h-[700px] md:min-h-screen flex items-center justify-center">
+      <div className="h-[700px] md:min-h-screen flex items-center justify-center">
         <div className="text-center">
           <p className="text-white/50 mb-4">Služba nenájdená</p>
           <button onClick={() => navigate('/')} className="text-[#CC0100] hover:underline">← Späť na úvod</button>
@@ -157,7 +157,7 @@ function ServicePageContent() {
   return (
     <>
       {/* Hero */}
-      <section className="relative min-h-[60vh] flex items-end pb-16" style={{ background: '#1A1B1E' }}>
+      <section className="relative h-[300px] md:min-h-[60vh] flex items-end pb-16" style={{ background: '#1A1B1E' }}>
         <div className="absolute inset-0">
           <img src={service.image} alt={service.title} className="w-full h-full object-cover opacity-25" />
           <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(26,27,30,0.4) 0%, rgba(26,27,30,1) 100%)' }} />
@@ -251,7 +251,7 @@ function ServicePageContent() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {(details?.process || t.process.steps).map((step, i) => (
               <motion.div  key={i}  initial={isDesktop ? { opacity: 0, y: 20 } : false}  whileInView={isDesktop ? { opacity: 1, y: 0 } : {}}  viewport={isDesktop ? { once: true } : undefined}  transition={    isDesktop      ? { duration: 0.5, delay: i * 0.1 }      : undefined  }  className="p-6 rounded-2xl"  style={{    background: isDesktop      ? 'rgba(26,27,30,0.6)'      : 'rgba(204,1,0,0.04)',    border: isDesktop      ? '1px solid rgba(255,255,255,0.05)'      : '1px solid rgba(204,1,0,0.25)',    boxShadow: !isDesktop      ? '0 0 24px rgba(204,1,0,0.08)'      : 'none',  }}>
-                
+
                 <div className="w-10 h-10 rounded-full flex items-center justify-center mb-4 text-sm font-mono font-bold"
                   style={{ background: 'rgba(204,1,0,0.1)', border: '1px solid rgba(204,1,0,0.2)', color: '#CC0100' }}>
                   {step.n || step.number}
