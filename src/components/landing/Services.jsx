@@ -7,14 +7,19 @@ import SectionLabel from './SectionLabel';
 
 import { useMediaQuery } from "react-responsive";
 
+// pc
 const serviceImages = [
-  '/kkfolmain.webp',
-  '/folia.jpg',
-  '/branding.png',
-  '/tlac.png',
-  '/graficdesing.png',
-  '/putac.png',
+  '/slzuby/auot8.webp',
+   '/slzuby/folia.webp',
+ '/slzuby/branding.webp',
+ '/slzuby/tlac.webp',
+ '/slzuby/graficdesing.webp',
+ '/slzuby/putac.webp',
+
+
+  
 ];
+
 
 export default function Services() {
 
@@ -37,6 +42,7 @@ export default function Services() {
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        
         <SectionLabel
           label={t.services.badge}
           title={t.services.title}
@@ -74,7 +80,7 @@ export default function Services() {
     aria-label={service.title}
   />
 
-  <img
+{isDesktop &&   <img
     src={serviceImages[i]}
     alt={service.title}
     loading="lazy"
@@ -83,6 +89,9 @@ export default function Services() {
       transform: hovered === i || !isDesktop ? 'scale(1.08)' : 'scale(1)',
     }}
   />
+
+   }
+
 
   <div
     className="absolute inset-0 transition-all duration-500"

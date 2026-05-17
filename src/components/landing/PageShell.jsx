@@ -14,7 +14,7 @@ export default function PageShell({ children }) {
   return (
     <LanguageProvider>
       <div className="min-h-screen overflow-x-hidden" style={{ background: '#1A1B1E', color: '#FFFFFF' }}>
-        {isDesktop &&      <ScrollProgress />}
+   <ScrollProgress />
    
 
         <Navbar />
